@@ -7,8 +7,40 @@ dotenv.config();
 
 const app = express();
 
+// Enable CORS
+
+const allowedOrigins = [
+    //deploment url
+    'http://agri-connect-mern1.vercel.app',
+
+    //localhost for local development testing
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:3000'
+];
+
+const corsOptions = {
+  // Use the origin function to dynamically check if the origin is allowed
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, postman, or curl)
+    // OR if the origin is in our list of allowed origins
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  // Set to true if your API uses cookies, sessions, or authorization headers
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+
+// Middleware - Apply the configured CORS options
+app.use(cors(corsOptions));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB

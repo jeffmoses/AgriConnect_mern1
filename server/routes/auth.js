@@ -48,6 +48,7 @@ router.post('/signup', [
       }
     });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
@@ -58,31 +59,42 @@ router.post('/login', [
   body('password').exists().withMessage('Password is required')
 ], async (req, res) => {
   try {
+    console.log('Login attempt for email:', req.body.email);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       return res.status(400).json({ message: 'Validation failed', errors: errors.array() });
     }
 
     const { email, password } = req.body;
+    console.log('Finding user for email:', email);
 
     // Find user
     const user = await User.findOne({ email });
+    console.log('User found:', !!user);
     if (!user) {
+      console.log('User not found');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    console.log('User password hash exists:', !!user.password);
     // Check password
+    console.log('Comparing password');
     const isMatch = await user.comparePassword(password);
+    console.log('Password match:', isMatch);
     if (!isMatch) {
+      console.log('Password does not match');
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    console.log('Generating JWT token');
     // Generate JWT token
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
+    console.log('JWT generated successfully');
 
     res.json({
       message: 'Login successful',
@@ -95,6 +107,9 @@ router.post('/login', [
       }
     });
   } catch (error) {
+    console.error('Login error:', error);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
