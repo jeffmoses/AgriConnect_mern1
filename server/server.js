@@ -11,7 +11,7 @@ const app = express();
 
 const allowedOrigins = [
     //deploment url
-    'http://agri-connect-mern1.vercel.app',
+    'https://agri-connect-mern1.vercel.app',
 
     //localhost for local development testing
     'http://localhost:5173',
