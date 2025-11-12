@@ -11,10 +11,10 @@ const app = express();
 
 const allowedOrigins = [
     //deploment url
-    'https://agri-connect-mern1-przf.vercel.app',
-
+    'https://agri-connect-mern1.vercel.app',
     //localhost for local development testing
     'http://localhost:5173',
+    'http://localhost:5174',
     'http://localhost:3000'
 ];
 
@@ -53,7 +53,7 @@ app.use('/api/listings', require('./routes/listings'));
 app.get('/', (req, res) => {
   res.json({ message: 'AgriConnect API is running' });
 });
-
+// Start the server  
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
