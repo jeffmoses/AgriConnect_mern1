@@ -1,4 +1,6 @@
-🥕 AgriConnect: Community Food Resource & Waste Reduction Platform
+🍃 AgriConnect: Community Food Resource & Waste Reduction Platform
+
+🌐 **Live Demo:** [https://agri-connect-mern1.vercel.app/](https://agri-connect-mern1.vercel.app/)
 
 🎯 Project Overview & Mission
 
@@ -107,8 +109,6 @@ MongoDB (running locally or a cloud instance like MongoDB Atlas)
 2. Installation & Setup
 
 Clone the repository:
-
-# Replace with your actual repo URL if hosted
 git clone https://github.com/jeffmoses/AgriConnect_mern1.git
 cd AgriConnect
 
