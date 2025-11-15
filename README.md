@@ -1,6 +1,6 @@
 🍃 AgriConnect: Community Food Resource & Waste Reduction Platform
 
-🌐 **Live Demo:** [https://agri-connect-mern1.vercel.app/](https://agri-connect-mern1.vercel.app/)
+🌐 **Live Demo:** [CLICK](https://agri-connect-mern1.vercel.app/)
 
 🎯 Project Overview & Mission
 
